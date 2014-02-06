@@ -7,7 +7,7 @@ object Slf4sBuild extends Build {
     name := "slf4s-api",
     scalaVersion := "2.10.3",
     crossScalaVersions := Seq("2.10.0", "2.10.1", "2.10.2", "2.10.3"),
-    version := "1.7.5",
+    version := "1.7.5-SNAPSHOT",
     publishMavenStyle := true,
     publishArtifact in Test := false,
     pomIncludeRepository := { _ => false },
@@ -34,7 +34,7 @@ object Slf4sBuild extends Build {
     libraryDependencies ++= Seq(
       "org.slf4j" % "slf4j-api" % "1.7.5",
       "org.scalatest" %% "scalatest" % "2.0" % "test",
-      "org.mockito" % "mockito-all" % "1.9.5"
+      "org.mockito" % "mockito-all" % "1.9.5" % "test"
     )
   )
 }
