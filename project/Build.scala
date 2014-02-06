@@ -13,6 +13,17 @@ object Slf4sBuild extends Build {
     pomIncludeRepository := { _ => false },
     licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT")),
     homepage := Some(url("http://slf4s.org/")),
+    scmInfo := Some(ScmInfo(url("https://github.com/mattroberts297/slf4s"), "https://github.com/mattroberts297/slf4s", None)),
+    pomExtra := (
+      <developers>
+        <developer>
+          <id>mattroberts297</id>
+          <name>Matt Roberts</name>
+          <email>mattroberts297@gmail.com</email>
+          <url>http://mattro.be/rts/</url>
+        </developer>
+      </developers>
+    ),
     publishTo := {
       val nexus = "https://oss.sonatype.org/"
       if (isSnapshot.value)
