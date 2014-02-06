@@ -22,25 +22,33 @@ Simple Logging Facade for Scala
 # Usage
 ### Logging Mixin (trait)
 ```scala
-import org.slf4s.Logging
+package org.slf4s
 
-class Example with Logging {
-  val importantValue = 10
-  log.debug(s"importantValue: $importantValue")
-  val importantThrowable = new Throwable
-  log.debug(s"importantValue: $importantValue", importantThrowable)
+import org.scalatest.WordSpec
+
+class LoggingExampleSpec extends WordSpec with Logging {
+  "The Logging trait should be easy to use" in {
+    val importantValue = 10
+    log.debug(s"importantValue: $importantValue")
+    val importantThrowable = new Throwable
+    log.debug(s"importantValue: $importantValue", importantThrowable)
+  }
 }
 ```
 
 ### Logger Factory (object)
 ``` scala
-import org.slf4s.LoggerFactory
+package org.slf4s
 
-class Example {
-  val log = LoggerFactory[Example]
-  val importantValue = 10
-  log.debug(s"importantValue: $importantValue")
-  val importantThrowable = new Throwable
-  log.debug(s"importantValue: $importantValue", importantThrowable)
+import org.scalatest.WordSpec
+
+class LoggerFactoryExampleSpec extends WordSpec {
+  "The LoggerFactory should be familiar" in {
+    val log = LoggerFactory.getLogger[LoggerFactoryExampleSpec]
+    val importantValue = 10
+    log.debug(s"importantValue: $importantValue")
+    val importantThrowable = new Throwable
+    log.debug(s"importantValue: $importantValue", importantThrowable)
+  }
 }
 ```
