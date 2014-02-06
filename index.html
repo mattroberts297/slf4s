@@ -61,27 +61,35 @@
 <h3>
 <a name="logging-mixin-trait" class="anchor" href="#logging-mixin-trait"><span class="octicon octicon-link"></span></a>Logging Mixin (trait)</h3>
 
-<div class="highlight highlight-scala"><pre><span class="k">import</span> <span class="nn">org.slf4s.Logging</span>
+<div class="highlight highlight-scala"><pre><span class="k">package</span> <span class="nn">org.slf4s</span>
 
-<span class="k">class</span> <span class="nc">Example</span> <span class="k">with</span> <span class="nc">Logging</span> <span class="o">{</span>
-  <span class="k">val</span> <span class="n">importantValue</span> <span class="k">=</span> <span class="mi">10</span>
-  <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">)</span>
-  <span class="k">val</span> <span class="n">importantThrowable</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Throwable</span>
-  <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">,</span> <span class="n">importantThrowable</span><span class="o">)</span>
+<span class="k">import</span> <span class="nn">org.scalatest.WordSpec</span>
+
+<span class="k">class</span> <span class="nc">LoggingExampleSpec</span> <span class="k">extends</span> <span class="nc">WordSpec</span> <span class="k">with</span> <span class="nc">Logging</span> <span class="o">{</span>
+  <span class="s">"The Logging trait should be easy to use"</span> <span class="n">in</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">importantValue</span> <span class="k">=</span> <span class="mi">10</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">importantThrowable</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Throwable</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">,</span> <span class="n">importantThrowable</span><span class="o">)</span>
+  <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
 
 <h3>
 <a name="logger-factory-object" class="anchor" href="#logger-factory-object"><span class="octicon octicon-link"></span></a>Logger Factory (object)</h3>
 
-<div class="highlight highlight-scala"><pre><span class="k">import</span> <span class="nn">org.slf4s.LoggerFactory</span>
+<div class="highlight highlight-scala"><pre><span class="k">package</span> <span class="nn">org.slf4s</span>
 
-<span class="k">class</span> <span class="nc">Example</span> <span class="o">{</span>
-  <span class="k">val</span> <span class="n">log</span> <span class="k">=</span> <span class="nc">LoggerFactory</span><span class="o">[</span><span class="kt">Example</span><span class="o">]</span>
-  <span class="k">val</span> <span class="n">importantValue</span> <span class="k">=</span> <span class="mi">10</span>
-  <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">)</span>
-  <span class="k">val</span> <span class="n">importantThrowable</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Throwable</span>
-  <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">,</span> <span class="n">importantThrowable</span><span class="o">)</span>
+<span class="k">import</span> <span class="nn">org.scalatest.WordSpec</span>
+
+<span class="k">class</span> <span class="nc">LoggerFactoryExampleSpec</span> <span class="k">extends</span> <span class="nc">WordSpec</span> <span class="o">{</span>
+  <span class="s">"The LoggerFactory should be familiar"</span> <span class="n">in</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">log</span> <span class="k">=</span> <span class="nc">LoggerFactory</span><span class="o">.</span><span class="n">getLogger</span><span class="o">[</span><span class="kt">LoggerFactoryExampleSpec</span><span class="o">]</span>
+    <span class="k">val</span> <span class="n">importantValue</span> <span class="k">=</span> <span class="mi">10</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">importantThrowable</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Throwable</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">,</span> <span class="n">importantThrowable</span><span class="o">)</span>
+  <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
       </section>
