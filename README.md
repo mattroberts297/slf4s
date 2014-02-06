@@ -12,7 +12,7 @@ Simple Logging Facade for Scala
 ### Build.scala
 ```scala
       libraryDependencies ++= Seq(
-        "org.slf4s" % "slf4s-api" % "1.7.5",
+        "org.slf4s" %% "slf4s-api" % "1.7.5",
         "ch.qos.logback" % "logback-classic" % "1.1.0"
       )
 ```
