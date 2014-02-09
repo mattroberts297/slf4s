@@ -1,6 +1,6 @@
-# slf4s
+# About
 
-Simple Logging Facade for Scala
+A Simple Logging Facade for Scala (SLF4S) built on top of SLF4J.
 
 # Features
 * Logger methods that support lazy evaluation of messages;
