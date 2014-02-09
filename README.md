@@ -4,7 +4,6 @@ Simple Logging Facade for Scala
 
 # Features
 * Logger methods that support lazy evaluation of messages;
-* Logger methods that have the @inline hint;
 * A Logging Mixin for conveniently obtaining a Logger; and
 * A LoggerFactory that is ClassTag aware.
 
@@ -12,8 +11,8 @@ Simple Logging Facade for Scala
 ### Build.scala
 ```scala
       libraryDependencies ++= Seq(
-        "org.slf4s" % "slf4s-api" % "1.7.5",
-        "ch.qos.logback" % "logback-classic" % "1.1.0"
+        "org.slf4s" % "slf4s-api" % "1.7.6",
+        "ch.qos.logback" % "logback-classic" % "1.1.1"
       )
 ```
 

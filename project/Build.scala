@@ -6,7 +6,7 @@ object Slf4sBuild extends Build {
     organization := "org.slf4s",
     name := "slf4s-api",
     scalaVersion := "2.10.3",
-    version := "1.7.5",
+    version := "1.7.6",
     publishMavenStyle := true,
     publishArtifact in Test := false,
     pomIncludeRepository := { _ => false },
@@ -31,7 +31,7 @@ object Slf4sBuild extends Build {
        Some("releases"  at nexus + "service/local/staging/deploy/maven2")
     },
     libraryDependencies ++= Seq(
-      "org.slf4j" % "slf4j-api" % "1.7.5",
+      "org.slf4j" % "slf4j-api" % "1.7.6",
       "org.scalatest" %% "scalatest" % "2.0" % "test",
       "org.mockito" % "mockito-all" % "1.9.5" % "test"
     )
