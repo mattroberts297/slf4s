@@ -63,7 +63,9 @@
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
 
 <h3>
-<a name="logging-mixin-trait" class="anchor" href="#logging-mixin-trait"><span class="octicon octicon-link"></span></a>Logging Mixin (trait)</h3>
+<a name="logging-trait" class="anchor" href="#logging-trait"><span class="octicon octicon-link"></span></a>Logging Trait</h3>
+
+<p>The <code>Logging</code> trait provides a <code>protected val log</code> to your class, so it'll be available in the local scope, but won't pollute your interface. You can also reference it via a self type if you're using the cake pattern.</p>
 
 <div class="highlight highlight-scala"><pre><span class="k">package</span> <span class="nn">org.slf4s</span>
 
@@ -82,6 +84,8 @@
 <h3>
 <a name="logger-factory-object" class="anchor" href="#logger-factory-object"><span class="octicon octicon-link"></span></a>Logger Factory (object)</h3>
 
+<p>The <code>LoggerFactory</code> gives you great flexibility and behaves much like the <a href="http://www.slf4j.org/">slf4j</a> LoggerFactory. You probably only need to use this if you wish to log as a class other than the one in scope.</p>
+
 <div class="highlight highlight-scala"><pre><span class="k">package</span> <span class="nn">org.slf4s</span>
 
 <span class="k">import</span> <span class="nn">org.scalatest.WordSpec</span>
@@ -96,6 +100,28 @@
   <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
+
+<h3>
+<a name="string-interpolation" class="anchor" href="#string-interpolation"><span class="octicon octicon-link"></span></a>String Interpolation</h3>
+
+<p>Scala 2.10.0 offers a new mechanism to create strings from your data: <a href="http://docs.scala-lang.org/overviews/core/string-interpolation.html">String Interpolation</a>. This allows you to to embed variable references and expressions directly in processed string literals.</p>
+
+<div class="highlight highlight-scala"><pre><span class="k">package</span> <span class="nn">org.slf4s</span>
+
+<span class="k">import</span> <span class="nn">org.scalatest.WordSpec</span>
+
+<span class="k">class</span> <span class="nc">StringInterpolatorExampleSpec</span> <span class="k">extends</span> <span class="nc">WordSpec</span> <span class="k">with</span> <span class="nc">Logging</span> <span class="o">{</span>
+
+  <span class="s">"String interpolation should work"</span> <span class="n">in</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="s">"James"</span>
+    <span class="k">val</span> <span class="n">height</span> <span class="k">=</span> <span class="mf">1.9d</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"Hello, $name"</span><span class="o">)</span>  <span class="c1">// Hello, James</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"1 + 1 = ${1 + 1}"</span><span class="o">)</span> <span class="c1">// 1 + 1 = 2</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">f</span><span class="s">"$name%s is $height%2.2f meters tall"</span><span class="o">)</span>  <span class="c1">// James is 1.90 meters tall</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">raw</span><span class="s">"a\nb"</span><span class="o">)</span> <span class="c1">// New line is preserved</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
       </section>
     </div>
 
@@ -107,16 +133,17 @@
       </footer>
     </div>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-40902100-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
-  ga('create', 'UA-40902100-2', 'slf4s.org');
-  ga('send', 'pageview');
-
-</script>
 
   </body>
 </html>
