@@ -7,7 +7,7 @@ object Slf4sBuild extends Build {
     name := "slf4s-api",
     scalaVersion := "2.11.0",
     crossScalaVersions := Seq("2.10.4", "2.11.0"),
-    version := "1.7.6",
+    version := "1.7.7",
     publishMavenStyle := true,
     publishArtifact in Test := false,
     pomIncludeRepository := { _ => false },
