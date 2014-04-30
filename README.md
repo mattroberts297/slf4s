@@ -13,7 +13,7 @@ A Simple Logging Facade for Scala (SLF4S) built on top of SLF4J.
 ### Build.scala
 ```scala
       libraryDependencies ++= Seq(
-        "org.slf4s" %% "slf4s-api" % "1.7.6",
+        "org.slf4s" %% "slf4s-api" % "1.7.7",
         "ch.qos.logback" % "logback-classic" % "1.1.1"
       )
 ```
