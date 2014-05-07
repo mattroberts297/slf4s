@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/mattroberts297/slf4s.png?branch=master)](https://travis-ci.org/mattroberts297/slf4s)
 
 # About
-
 A Simple Logging Facade for Scala (SLF4S) built on top of SLF4J.
 
 # Features
@@ -78,6 +77,6 @@ class StringInterpolatorExampleSpec extends WordSpec with Logging {
 ```
 
 # Documentation
-- [ScalaDoc](http://slf4s.org/api/1.7.7/)
+[ScalaDoc](http://slf4s.org/api/1.7.7/)
 
 > The library is very small, but there are a few methods not mentioned above.
