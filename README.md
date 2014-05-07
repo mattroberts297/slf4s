@@ -77,6 +77,6 @@ class StringInterpolatorExampleSpec extends WordSpec with Logging {
 ```
 
 # Documentation
-[ScalaDoc](http://slf4s.org/api/1.7.7/)
+For those who prefer not to use an IDE, I've made the [ScalaDoc](http://slf4s.org/api/1.7.7/) available online.
 
 > The library is very small, but there are a few methods not mentioned above.
