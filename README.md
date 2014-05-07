@@ -14,7 +14,7 @@ A Simple Logging Facade for Scala (SLF4S) built on top of SLF4J.
 ```scala
       libraryDependencies ++= Seq(
         "org.slf4s" %% "slf4s-api" % "1.7.7",
-        "ch.qos.logback" % "logback-classic" % "1.1.1"
+        "ch.qos.logback" % "logback-classic" % "1.1.2"
       )
 ```
 
@@ -76,3 +76,8 @@ class StringInterpolatorExampleSpec extends WordSpec with Logging {
   }
 }
 ```
+
+# Documentation
+- [ScalaDoc](http://slf4s.org/api/1.7.7/)
+
+> The library is very small, but there are a few methods not mentioned above.
