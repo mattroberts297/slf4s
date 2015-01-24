@@ -6,8 +6,8 @@ class LoggerFactoryExampleSpec extends WordSpec {
   "The LoggerFactory should be familiar" in {
     val log = LoggerFactory.getLogger[LoggerFactoryExampleSpec]
     val importantValue = 10
-    log.debug(s"importantValue: $importantValue")
+    log.debug("importantValue: %d".format(importantValue))
     val importantThrowable = new Throwable
-    log.debug(s"importantValue: $importantValue", importantThrowable)
+    log.debug("importantThrowable", importantThrowable)
   }
 }

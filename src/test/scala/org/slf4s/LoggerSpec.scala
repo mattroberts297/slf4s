@@ -1,6 +1,7 @@
 package org.slf4s
 
-import org.scalatest.{ShouldMatchers, WordSpec}
+import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.WordSpec
 import org.mockito.Mockito._
 import org.slf4j.{Logger => JLogger}
 

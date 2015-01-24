@@ -5,8 +5,8 @@ import org.scalatest.WordSpec
 class LoggingExampleSpec extends WordSpec with Logging {
   "The Logging trait should be easy to use" in {
     val importantValue = 10
-    log.debug(s"importantValue: $importantValue")
+    log.debug("importantValue: %d".format(importantValue))
     val importantThrowable = new Throwable
-    log.debug(s"importantValue: $importantValue", importantThrowable)
+    log.debug("importantThrowable", importantThrowable)
   }
 }
