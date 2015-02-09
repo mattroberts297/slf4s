@@ -2,7 +2,7 @@ package org.slf4s
 
 import org.slf4j.{Logger => Underlying}
 
-case class Logger(val underlying: Underlying) {
+class Logger(val underlying: Underlying) {
   def trace(msg: String): Unit = macro LoggerMacro.trace
   def trace(msg: String, t: Throwable): Unit = macro LoggerMacro.traceT
   def debug(msg: String): Unit = macro LoggerMacro.debug
@@ -13,4 +13,8 @@ case class Logger(val underlying: Underlying) {
   def warn(msg: String, t: Throwable): Unit = macro LoggerMacro.warnT
   def error(msg: String): Unit = macro LoggerMacro.error
   def error(msg: String, t: Throwable): Unit = macro LoggerMacro.errorT
+}
+
+object Logger {
+  def apply(underlying: Underlying): Logger = new Logger(underlying)
 }
