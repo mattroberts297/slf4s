@@ -4,9 +4,12 @@
 A Simple Logging Facade for Scala (SLF4S) built on top of SLF4J.
 
 # Features
-* Logger methods that support lazy evaluation of messages;
+* Call by macro expansion in Scala 2.10 and 2.11;
+* Call by name in Scala 2.9;
 * A Logging Mixin for conveniently obtaining a Logger; and
 * A LoggerFactory that is ClassTag aware.
+
+The use of macros means that calls to `log.debug` become `if (log.isDebugEnabled) log.debug` at compile time.
 
 # Installation
 ### Build.scala
