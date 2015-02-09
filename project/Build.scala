@@ -11,6 +11,7 @@ object Slf4sBuild extends Build {
     publishMavenStyle := true,
     publishArtifact in Test := false,
     pomIncludeRepository := { _ => false },
+    makePomConfiguration ~= { _.copy(configurations = Some(Seq(Compile, Runtime, Optional))) },
     licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT")),
     homepage := Some(url("http://slf4s.org/")),
     scmInfo := Some(ScmInfo(url("https://github.com/mattroberts297/slf4s"), "https://github.com/mattroberts297/slf4s", None)),
