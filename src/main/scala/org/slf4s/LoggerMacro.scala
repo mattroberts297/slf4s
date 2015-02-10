@@ -4,91 +4,65 @@ import scala.reflect.macros.Context
 
 private object LoggerMacro {
   def trace(c: Context { type PrefixType = Logger })(msg: c.Expr[String]): c.Expr[Unit] = {
-    import c.universe._
-    c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isTraceEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("trace")), List(msg.tree)), 
-      Literal(Constant(()))
-    ))
+    log("isTraceEnabled", "trace")(c)(msg)
   }
 
   def traceT(c: Context { type PrefixType = Logger })(msg: c.Expr[String], t: c.Expr[Throwable]): c.Expr[Unit] = {
-    import c.universe._
-    c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isTraceEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("trace")), List(msg.tree, t.tree)), 
-      Literal(Constant(()))
-    ))
+    logT("isTraceEnabled", "trace")(c)(msg, t)
   }
 
   def debug(c: Context { type PrefixType = Logger })(msg: c.Expr[String]): c.Expr[Unit] = {
-    import c.universe._
-    c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isDebugEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("debug")), List(msg.tree)), 
-      Literal(Constant(()))
-    ))
+    log("isDebugEnabled", "debug")(c)(msg)
   }
 
   def debugT(c: Context { type PrefixType = Logger })(msg: c.Expr[String], t: c.Expr[Throwable]): c.Expr[Unit] = {
-    import c.universe._
-    c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isDebugEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("debug")), List(msg.tree, t.tree)), 
-      Literal(Constant(()))
-    ))
+    logT("isDebugEnabled", "debug")(c)(msg, t)
   }
 
   def info(c: Context { type PrefixType = Logger })(msg: c.Expr[String]): c.Expr[Unit] = {
-    import c.universe._
-    c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isInfoEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("info")), List(msg.tree)), 
-      Literal(Constant(()))
-    ))
+    log("isInfoEnabled", "info")(c)(msg)
   }
 
   def infoT(c: Context { type PrefixType = Logger })(msg: c.Expr[String], t: c.Expr[Throwable]): c.Expr[Unit] = {
-    import c.universe._
-    c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isInfoEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("info")), List(msg.tree, t.tree)), 
-      Literal(Constant(()))
-    ))
+    logT("isInfoEnabled", "info")(c)(msg, t)
   }
 
   def warn(c: Context { type PrefixType = Logger })(msg: c.Expr[String]): c.Expr[Unit] = {
-    import c.universe._
-    c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isWarnEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("warn")), List(msg.tree)), 
-      Literal(Constant(()))
-    ))
+    log("isWarnEnabled", "warn")(c)(msg)
   }
 
   def warnT(c: Context { type PrefixType = Logger })(msg: c.Expr[String], t: c.Expr[Throwable]): c.Expr[Unit] = {
-    import c.universe._
-    c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isWarnEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("warn")), List(msg.tree, t.tree)), 
-      Literal(Constant(()))
-    ))
+    logT("isWarnEnabled", "warn")(c)(msg, t)
   }
 
   def error(c: Context { type PrefixType = Logger })(msg: c.Expr[String]): c.Expr[Unit] = {
+    log("isErrorEnabled", "error")(c)(msg)
+  }
+
+  def errorT(c: Context { type PrefixType = Logger })(msg: c.Expr[String], t: c.Expr[Throwable]): c.Expr[Unit] = {
+    logT("isErrorEnabled", "error")(c)(msg, t)
+  }
+
+  private def log[C <: Context {type PrefixType = Logger}]
+      (isEnabledMethodName: String, logMethodName: String)
+      (c: Context)
+      (msg: c.Expr[String]): c.Expr[Unit] = {
     import c.universe._
     c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isErrorEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("error")), List(msg.tree)), 
+      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName(isEnabledMethodName)), List()), 
+      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName(logMethodName)), List(msg.tree)), 
       Literal(Constant(()))
     ))
   }
 
-  def errorT(c: Context { type PrefixType = Logger })(msg: c.Expr[String], t: c.Expr[Throwable]): c.Expr[Unit] = {
+  private def logT[C <: Context {type PrefixType = Logger}]
+      (isEnabledMethodName: String, logMethodName: String)
+      (c: Context)
+      (msg: c.Expr[String], t: c.Expr[Throwable]): c.Expr[Unit] = {
     import c.universe._
     c.Expr[Unit](If(
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("isErrorEnabled")), List()), 
-      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName("error")), List(msg.tree, t.tree)), 
+      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName(isEnabledMethodName)), List()), 
+      Apply(Select(Select(c.prefix.tree, "underlying"), newTermName(logMethodName)), List(msg.tree, t.tree)), 
       Literal(Constant(()))
     ))
   }
