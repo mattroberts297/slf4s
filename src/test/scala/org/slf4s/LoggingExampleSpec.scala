@@ -7,6 +7,6 @@ class LoggingExampleSpec extends WordSpec with Logging {
     val importantValue = 10
     log.debug(s"importantValue: $importantValue")
     val importantThrowable = new Throwable
-    log.debug(s"importantThrowable: $importantThrowable")
+    log.debug(s"importantValue: $importantValue", importantThrowable)
   }
 }
