@@ -2,12 +2,14 @@ package org.slf4s
 
 import org.scalatest.{WordSpec, Matchers}
 import org.mockito.Mockito._
-import org.slf4j.{Logger => JLogger}
+import org.slf4j.{Logger => Underlying, Marker => UnderlyingMarker}
 
 class LoggerSpec extends WordSpec with Matchers {
 
   trait Mocks {
-    val mockLogger = mock(classOf[JLogger])
+    val underlyingMarker = mock(classOf[UnderlyingMarker])
+    val marker = mock(classOf[Marker])
+    val mockLogger = mock(classOf[Underlying])
     val logger = Logger(mockLogger)
   }
 
@@ -17,21 +19,39 @@ class LoggerSpec extends WordSpec with Matchers {
   "The Logger.trace method" when {
     "trace is enabled" should {
       "invoke the underlying trace method" in new Mocks {
+        // Arrange.
         when(mockLogger.isTraceEnabled).thenReturn(true)
+        when(marker.underlying).thenReturn(underlyingMarker)
+        // Act.
+        logger.trace(marker, msg)
+        logger.trace(marker, msg, t)
         logger.trace(msg)
         logger.trace(msg, t)
+        // Assert.
+        verify(mockLogger).trace(underlyingMarker, msg)
+        verify(mockLogger).trace(underlyingMarker, msg, t)
         verify(mockLogger).trace(msg)
         verify(mockLogger).trace(msg, t)
+        verify(marker, times(2)).underlying
       }
     }
 
     "trace is disabled" should {
       "not invoke the underlying trace method" in new Mocks {
+        // Arrange.
         when(mockLogger.isTraceEnabled).thenReturn(false)
+        when(marker.underlying).thenReturn(underlyingMarker)
+        // Act.
+        logger.trace(marker, msg)
+        logger.trace(marker, msg, t)
         logger.trace(msg)
         logger.trace(msg, t)
+        // Assert.
+        verify(mockLogger, never()).trace(underlyingMarker, msg)
+        verify(mockLogger, never()).trace(underlyingMarker, msg, t)
         verify(mockLogger, never()).trace(msg)
         verify(mockLogger, never()).trace(msg, t)
+        verify(marker, never()).underlying
       }
     }
   }
