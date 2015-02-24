@@ -3,10 +3,8 @@ package org.slf4s
 import org.slf4j.{Logger => Underlying}
 
 class Logger(val underlying: Underlying) {
-  def trace(marker: Marker, msg: String): Unit = macro LoggerMacro.traceMS
-  def trace(marker: Marker, msg: String, t: Throwable): Unit = macro LoggerMacro.traceMST
-  def trace(msg: String): Unit = macro LoggerMacro.traceS
-  def trace(msg: String, t: Throwable): Unit = macro LoggerMacro.traceST
+  def trace(msg: String): Unit = macro LoggerMacro.trace
+  def trace(msg: String, t: Throwable): Unit = macro LoggerMacro.traceT
   def debug(msg: String): Unit = macro LoggerMacro.debug
   def debug(msg: String, t: Throwable): Unit = macro LoggerMacro.debugT
   def info(msg: String): Unit = macro LoggerMacro.info
