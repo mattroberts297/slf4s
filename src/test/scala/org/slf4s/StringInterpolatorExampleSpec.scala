@@ -3,7 +3,6 @@ package org.slf4s
 import org.scalatest.WordSpec
 
 class StringInterpolatorExampleSpec extends WordSpec with Logging {
-
   "String interpolation should work" in {
     val name = "James"
     val height = 1.9d
