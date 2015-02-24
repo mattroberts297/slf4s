@@ -3,12 +3,12 @@ package org.slf4s
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.WordSpec
 import org.mockito.Mockito._
-import org.slf4j.{Logger => JLogger}
+import org.slf4j.{Logger => Underlying}
 
 class LoggerSpec extends WordSpec with ShouldMatchers {
 
-  trait Mocks {
-    val mockLogger = mock(classOf[JLogger])
+  trait Context {
+    val mockLogger = mock(classOf[Underlying])
     val logger = Logger(mockLogger)
   }
 
@@ -17,7 +17,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
 
   "The Logger.trace method" when {
     "trace is enabled" should {
-      "invoke the underlying trace method" in new Mocks {
+      "invoke the underlying trace method" in new Context {
         when(mockLogger.isTraceEnabled).thenReturn(true)
         logger.trace(msg)
         logger.trace(msg, t)
@@ -27,7 +27,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
     }
 
     "trace is disabled" should {
-      "not invoke the underlying trace method" in new Mocks {
+      "not invoke the underlying trace method" in new Context {
         when(mockLogger.isTraceEnabled).thenReturn(false)
         logger.trace(msg)
         logger.trace(msg, t)
@@ -39,7 +39,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
 
   "The Logger.debug method" when {
     "debug is enabled" should {
-      "invoke the underlying debug method" in new Mocks {
+      "invoke the underlying debug method" in new Context {
         when(mockLogger.isDebugEnabled).thenReturn(true)
         logger.debug(msg)
         logger.debug(msg, t)
@@ -49,7 +49,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
     }
 
     "debug is disabled" should {
-      "not invoke the underlying debug method" in new Mocks {
+      "not invoke the underlying debug method" in new Context {
         when(mockLogger.isDebugEnabled).thenReturn(false)
         logger.debug(msg)
         logger.debug(msg, t)
@@ -61,7 +61,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
 
   "The Logger.info method" when {
     "info is enabled" should {
-      "invoke the underlying info method" in new Mocks {
+      "invoke the underlying info method" in new Context {
         when(mockLogger.isInfoEnabled).thenReturn(true)
         logger.info(msg)
         logger.info(msg, t)
@@ -71,7 +71,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
     }
 
     "info is disabled" should {
-      "not invoke the underlying info method" in new Mocks {
+      "not invoke the underlying info method" in new Context {
         when(mockLogger.isInfoEnabled).thenReturn(false)
         logger.info(msg)
         logger.info(msg, t)
@@ -83,7 +83,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
 
   "The Logger.warn method" when {
     "warn is enabled" should {
-      "invoke the underlying warn method" in new Mocks {
+      "invoke the underlying warn method" in new Context {
         when(mockLogger.isWarnEnabled).thenReturn(true)
         logger.warn(msg)
         logger.warn(msg, t)
@@ -93,7 +93,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
     }
 
     "warn is disabled" should {
-      "not invoke the underlying warn method" in new Mocks {
+      "not invoke the underlying warn method" in new Context {
         when(mockLogger.isWarnEnabled).thenReturn(false)
         logger.warn(msg)
         logger.warn(msg, t)
@@ -105,7 +105,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
 
   "The Logger.error method" when {
     "error is enabled" should {
-      "invoke the underlying error method" in new Mocks {
+      "invoke the underlying error method" in new Context {
         when(mockLogger.isErrorEnabled).thenReturn(true)
         logger.error(msg)
         logger.error(msg, t)
@@ -115,7 +115,7 @@ class LoggerSpec extends WordSpec with ShouldMatchers {
     }
 
     "error is disabled" should {
-      "not invoke the underlying error method" in new Mocks {
+      "not invoke the underlying error method" in new Context {
         when(mockLogger.isErrorEnabled).thenReturn(false)
         logger.error(msg)
         logger.error(msg, t)
