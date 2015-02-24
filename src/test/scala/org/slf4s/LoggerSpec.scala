@@ -1,10 +1,10 @@
 package org.slf4s
 
-import org.scalatest.{ShouldMatchers, WordSpec}
+import org.scalatest.{Matchers, WordSpec}
 import org.mockito.Mockito._
 import org.slf4j.{Logger => Underlying}
 
-class LoggerSpec extends WordSpec with ShouldMatchers {
+class LoggerSpec extends WordSpec with Matchers {
 
   trait Mocks {
     val mockLogger = mock(classOf[Underlying])
