@@ -5,7 +5,7 @@ object Slf4sBuild extends Build {
   lazy val slf4s = Project("sl4s-api", file(".")) settings(
     organization := "org.slf4s",
     name := "slf4s-api",
-    scalaVersion := "2.10.4",
+    scalaVersion := "2.10.5",
     scalacOptions := Seq("-unchecked", "-deprecation", "-language:experimental.macros"),
     version := "1.7.12",
     publishMavenStyle := true,
@@ -33,7 +33,7 @@ object Slf4sBuild extends Build {
        Some("releases"  at nexus + "service/local/staging/deploy/maven2")
     },
     libraryDependencies ++= Seq(
-      "org.scala-lang" % "scala-reflect" % "2.10.4",
+      "org.scala-lang" % "scala-reflect" % "2.10.5",
       "org.slf4j" % "slf4j-api" % "1.7.12",
       "org.scalatest" %% "scalatest" % "2.2.4" % "test",
       "org.mockito" % "mockito-all" % "1.10.19" % "test",
