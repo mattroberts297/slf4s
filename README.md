@@ -15,7 +15,7 @@ The use of macros means that calls to `log.debug` become `if (log.isDebugEnabled
 ### Build.scala
 ```scala
 libraryDependencies ++= Seq(
-  "org.slf4s" %% "slf4s-api" % "1.7.10",
+  "org.slf4s" %% "slf4s-api" % "1.7.12",
   "ch.qos.logback" % "logback-classic" % "1.1.2"
 )
 ```
@@ -80,6 +80,6 @@ class StringInterpolatorExampleSpec extends WordSpec with Logging {
 ```
 
 # Documentation
-For those who prefer not to use an IDE, I've made the [ScalaDoc](http://slf4s.org/api/1.7.10/) available online.
+For those who prefer not to use an IDE, I've made the [ScalaDoc](http://slf4s.org/api/1.7.12/) available online.
 
 > The library is very small, but there are a few methods not mentioned above.

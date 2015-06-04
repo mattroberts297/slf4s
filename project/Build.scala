@@ -7,7 +7,7 @@ object Slf4sBuild extends Build {
     name := "slf4s-api",
     scalaVersion := "2.11.5",
     scalacOptions := Seq("-unchecked", "-deprecation", "-language:experimental.macros"),
-    version := "1.7.10",
+    version := "1.7.12",
     publishMavenStyle := true,
     publishArtifact in Test := false,
     pomIncludeRepository := { _ => false },
@@ -34,7 +34,7 @@ object Slf4sBuild extends Build {
     },
     libraryDependencies ++= Seq(
       "org.scala-lang" % "scala-reflect" % "2.11.5",
-      "org.slf4j" % "slf4j-api" % "1.7.10",
+      "org.slf4j" % "slf4j-api" % "1.7.12",
       "org.scalatest" %% "scalatest" % "2.2.4" % "test",
       "org.mockito" % "mockito-all" % "1.10.19" % "test",
       "ch.qos.logback" % "logback-classic" % "1.1.2" % "test"
