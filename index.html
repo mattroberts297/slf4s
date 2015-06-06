@@ -1,150 +1,138 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="SLF4S : Simple Logging Facade for Scala" />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>SLF4S</title>
+    <meta charset="UTF-8">
+    <title>SLF4S by mattroberts297</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">SLF4S</h1>
+      <h2 class="project-tagline">Simple Logging Facade for Scala</h2>
+      <a href="https://github.com/mattroberts297/slf4s" class="btn">View on GitHub</a>
+      <a href="https://github.com/mattroberts297/slf4s/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mattroberts297/slf4s/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/mattroberts297/slf4s">View on GitHub</a>
-
-          <h1 id="project_title">SLF4S</h1>
-          <h2 id="project_tagline">Simple Logging Facade for Scala</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/mattroberts297/slf4s/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/mattroberts297/slf4s/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p><a href="https://travis-ci.org/mattroberts297/slf4s"><img src="https://travis-ci.org/mattroberts297/slf4s.png?branch=master" alt="Build Status"></a></p>
+    <section class="main-content">
+      <p><a href="https://travis-ci.org/mattroberts297/slf4s"><img src="https://travis-ci.org/mattroberts297/slf4s.png?branch=2.11" alt="Build Status"></a></p>
 
 <h1>
-<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h1>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h1>
 
 <p>A Simple Logging Facade for Scala (SLF4S) built on top of SLF4J.</p>
 
 <h1>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h1>
 
 <ul>
-<li>Logger methods that support lazy evaluation of messages;</li>
-<li>A Logging Mixin for conveniently obtaining a Logger; and</li>
-<li>A LoggerFactory that is ClassTag aware.</li>
-</ul><h1>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+<li>Call by macro expansion (call by name in Scala 2.9);</li>
+<li>A Logging mixin for conveniently obtaining a Logger;</li>
+<li>A LoggerFactory that is <code>ClassTag</code> aware;</li>
+<li>Built for Scala 2.9, 2.10 and 2.11;</li>
+<li>Tested on Java 6, 7 and 8; and</li>
+<li>Tracks <a href="http://www.slf4j.org/">slf4j</a> releases.</li>
+</ul>
 
-<h3>
-<a name="buildscala" class="anchor" href="#buildscala"><span class="octicon octicon-link"></span></a>Build.scala</h3>
-
-<div class="highlight highlight-scala"><pre>      <span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-        <span class="s">"org.slf4s"</span> <span class="o">%%</span> <span class="s">"slf4s-api"</span> <span class="o">%</span> <span class="s">"1.7.12"</span><span class="o">,</span>
-        <span class="s">"ch.qos.logback"</span> <span class="o">%</span> <span class="s">"logback-classic"</span> <span class="o">%</span> <span class="s">"1.1.2"</span>
-      <span class="o">)</span>
-</pre></div>
-
-<blockquote>
-<p>You don't have to use <a href="http://logback.qos.ch/">logback</a>, any <a href="http://www.slf4j.org/">slf4j</a> compatible framework will do.</p>
-</blockquote>
+<p>The use of macros means that calls to <code>log.debug</code> are expanded into <code>if (log.isDebugEnabled) log.debug</code> at compile time.</p>
 
 <h1>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
 
 <h3>
-<a name="logging-trait" class="anchor" href="#logging-trait"><span class="octicon octicon-link"></span></a>Logging Trait</h3>
+<a id="buildscala" class="anchor" href="#buildscala" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build.scala</h3>
+
+<div class="highlight highlight-scala"><pre>libraryDependencies <span class="pl-k">++</span><span class="pl-k">=</span> <span class="pl-en">Seq</span>(
+  <span class="pl-s"><span class="pl-pds">"</span>org.slf4s<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s"><span class="pl-pds">"</span>slf4s-api<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>1.7.12<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>ch.qos.logback<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>logback-classic<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>1.1.2<span class="pl-pds">"</span></span>
+)</pre></div>
+
+<p>You don't have to use <a href="http://logback.qos.ch/">logback</a>, any <a href="http://www.slf4j.org/">slf4j</a> compatible framework will do.</p>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<h3>
+<a id="the-logging-trait" class="anchor" href="#the-logging-trait" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Logging Trait</h3>
 
 <p>The <code>Logging</code> trait provides a <code>protected val log</code> to your class, so it'll be available in the local scope, but won't pollute your interface. You can also reference it via a self type if you're using the cake pattern.</p>
 
-<div class="highlight highlight-scala"><pre><span class="k">package</span> <span class="nn">org.slf4s</span>
+<div class="highlight highlight-scala"><pre><span class="pl-k">package</span> <span class="pl-en">org.slf4s</span>
 
-<span class="k">import</span> <span class="nn">org.scalatest.WordSpec</span>
+<span class="pl-k">import</span> <span class="pl-v">org.scalatest.</span><span class="pl-v">WordSpec</span>
 
-<span class="k">class</span> <span class="nc">LoggingExampleSpec</span> <span class="k">extends</span> <span class="nc">WordSpec</span> <span class="k">with</span> <span class="nc">Logging</span> <span class="o">{</span>
-  <span class="s">"The Logging trait should be easy to use"</span> <span class="n">in</span> <span class="o">{</span>
-    <span class="k">val</span> <span class="n">importantValue</span> <span class="k">=</span> <span class="mi">10</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">)</span>
-    <span class="k">val</span> <span class="n">importantThrowable</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Throwable</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">,</span> <span class="n">importantThrowable</span><span class="o">)</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
+<span class="pl-k">class</span> <span class="pl-en">LoggingExampleSpec</span> <span class="pl-k">extends</span> <span class="pl-e">WordSpec</span> <span class="pl-k">with</span> <span class="pl-e">Logging</span> {
+  <span class="pl-s"><span class="pl-pds">"</span>The Logging trait should be easy to use<span class="pl-pds">"</span></span> in {
+    <span class="pl-k">val</span> <span class="pl-en">importantValue</span> <span class="pl-k">=</span> <span class="pl-c1">10</span>
+    log.debug(s<span class="pl-s"><span class="pl-pds">"</span>importantValue: $importantValue<span class="pl-pds">"</span></span>)
+    <span class="pl-k">val</span> <span class="pl-en">importantThrowable</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Throwable</span>
+    log.debug(s<span class="pl-s"><span class="pl-pds">"</span>importantValue: $importantValue<span class="pl-pds">"</span></span>, importantThrowable)
+  }
+}</pre></div>
 
 <h3>
-<a name="logger-factory-object" class="anchor" href="#logger-factory-object"><span class="octicon octicon-link"></span></a>Logger Factory (object)</h3>
+<a id="the-loggerfactory-object" class="anchor" href="#the-loggerfactory-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>The LoggerFactory Object</h3>
 
 <p>The <code>LoggerFactory</code> gives you great flexibility and behaves much like the <a href="http://www.slf4j.org/">slf4j</a> LoggerFactory. You probably only need to use this if you wish to log as a class other than the one in scope.</p>
 
-<div class="highlight highlight-scala"><pre><span class="k">package</span> <span class="nn">org.slf4s</span>
+<div class="highlight highlight-scala"><pre><span class="pl-k">package</span> <span class="pl-en">org.slf4s</span>
 
-<span class="k">import</span> <span class="nn">org.scalatest.WordSpec</span>
+<span class="pl-k">import</span> <span class="pl-v">org.scalatest.</span><span class="pl-v">WordSpec</span>
 
-<span class="k">class</span> <span class="nc">LoggerFactoryExampleSpec</span> <span class="k">extends</span> <span class="nc">WordSpec</span> <span class="o">{</span>
-  <span class="s">"The LoggerFactory should be familiar"</span> <span class="n">in</span> <span class="o">{</span>
-    <span class="k">val</span> <span class="n">log</span> <span class="k">=</span> <span class="nc">LoggerFactory</span><span class="o">.</span><span class="n">getLogger</span><span class="o">[</span><span class="kt">LoggerFactoryExampleSpec</span><span class="o">]</span>
-    <span class="k">val</span> <span class="n">importantValue</span> <span class="k">=</span> <span class="mi">10</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">)</span>
-    <span class="k">val</span> <span class="n">importantThrowable</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Throwable</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"importantValue: $importantValue"</span><span class="o">,</span> <span class="n">importantThrowable</span><span class="o">)</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
+<span class="pl-k">class</span> <span class="pl-en">LoggerFactoryExampleSpec</span> <span class="pl-k">extends</span> <span class="pl-e">WordSpec</span> {
+  <span class="pl-s"><span class="pl-pds">"</span>The LoggerFactory should be familiar<span class="pl-pds">"</span></span> in {
+    <span class="pl-k">val</span> <span class="pl-en">log</span> <span class="pl-k">=</span> <span class="pl-en">LoggerFactory</span>.getLogger[<span class="pl-en">LoggerFactoryExampleSpec</span>]
+    <span class="pl-k">val</span> <span class="pl-en">importantValue</span> <span class="pl-k">=</span> <span class="pl-c1">10</span>
+    log.debug(s<span class="pl-s"><span class="pl-pds">"</span>importantValue: $importantValue<span class="pl-pds">"</span></span>)
+    <span class="pl-k">val</span> <span class="pl-en">importantThrowable</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Throwable</span>
+    log.debug(s<span class="pl-s"><span class="pl-pds">"</span>importantValue: $importantValue<span class="pl-pds">"</span></span>, importantThrowable)
+  }
+}</pre></div>
 
 <h3>
-<a name="string-interpolation" class="anchor" href="#string-interpolation"><span class="octicon octicon-link"></span></a>String Interpolation</h3>
+<a id="string-interpolation" class="anchor" href="#string-interpolation" aria-hidden="true"><span class="octicon octicon-link"></span></a>String Interpolation</h3>
 
 <p>Scala 2.10.0 offers a new mechanism to create strings from your data: <a href="http://docs.scala-lang.org/overviews/core/string-interpolation.html">String Interpolation</a>. This allows you to to embed variable references and expressions directly in processed string literals.</p>
 
-<div class="highlight highlight-scala"><pre><span class="k">package</span> <span class="nn">org.slf4s</span>
+<div class="highlight highlight-scala"><pre><span class="pl-k">package</span> <span class="pl-en">org.slf4s</span>
 
-<span class="k">import</span> <span class="nn">org.scalatest.WordSpec</span>
+<span class="pl-k">import</span> <span class="pl-v">org.scalatest.</span><span class="pl-v">WordSpec</span>
 
-<span class="k">class</span> <span class="nc">StringInterpolatorExampleSpec</span> <span class="k">extends</span> <span class="nc">WordSpec</span> <span class="k">with</span> <span class="nc">Logging</span> <span class="o">{</span>
+<span class="pl-k">class</span> <span class="pl-en">StringInterpolatorExampleSpec</span> <span class="pl-k">extends</span> <span class="pl-e">WordSpec</span> <span class="pl-k">with</span> <span class="pl-e">Logging</span> {
 
-  <span class="s">"String interpolation should work"</span> <span class="n">in</span> <span class="o">{</span>
-    <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="s">"James"</span>
-    <span class="k">val</span> <span class="n">height</span> <span class="k">=</span> <span class="mf">1.9d</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"Hello, $name"</span><span class="o">)</span>  <span class="c1">// Hello, James</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">s</span><span class="s">"1 + 1 = ${1 + 1}"</span><span class="o">)</span> <span class="c1">// 1 + 1 = 2</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">f</span><span class="s">"$name%s is $height%2.2f meters tall"</span><span class="o">)</span>  <span class="c1">// James is 1.90 meters tall</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="o">(</span><span class="n">raw</span><span class="s">"a\nb"</span><span class="o">)</span> <span class="c1">// New line is preserved</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
+  <span class="pl-s"><span class="pl-pds">"</span>String interpolation should work<span class="pl-pds">"</span></span> in {
+    <span class="pl-k">val</span> <span class="pl-en">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>James<span class="pl-pds">"</span></span>
+    <span class="pl-k">val</span> <span class="pl-en">height</span> <span class="pl-k">=</span> <span class="pl-c1">1.9d</span>
+    log.debug(s<span class="pl-s"><span class="pl-pds">"</span>Hello, $name<span class="pl-pds">"</span></span>)  <span class="pl-c">// Hello, James</span>
+    log.debug(s<span class="pl-s"><span class="pl-pds">"</span>1 + 1 = ${1 + 1}<span class="pl-pds">"</span></span>) <span class="pl-c">// 1 + 1 = 2</span>
+    log.debug(f<span class="pl-s"><span class="pl-pds">"</span>$name%s is $height%2.2f meters tall<span class="pl-pds">"</span></span>)  <span class="pl-c">// James is 1.90 meters tall</span>
+    log.debug(raw<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-cce">\n</span>b<span class="pl-pds">"</span></span>) <span class="pl-c">// New line is preserved</span>
+  }
+}</pre></div>
+
+<h3>
+<a id="accessing-slf4j" class="anchor" href="#accessing-slf4j" aria-hidden="true"><span class="octicon octicon-link"></span></a>Accessing SLF4J</h3>
+
+<p>The <a href="http://slf4s.org/api/1.7.12/#org.slf4s.Logger"><code>Logger</code></a> instance exposes an <a href="http://slf4s.org/api/1.7.12/index.html#org.slf4s.Logger@underlying:org.slf4j.Logger"><code>underlying</code></a> field that enables you to call slf4j methods directly. This is useful if you wish to avoid a macro expansion for some reason.</p>
 
 <h1>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h1>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h1>
 
-<p>For those who prefer not to use an IDE, I've made the <a href="/api/1.7.12/">ScalaDoc</a> available online.</p>
+<p>For those who prefer not to use an IDE, I've made the <a href="http://slf4s.org/api/1.7.12/">ScalaDoc</a> available online.</p>
 
-<blockquote>
-<p>The library is very small, but there are a few methods not mentioned above.</p>
-</blockquote>
-      </section>
-    </div>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mattroberts297/slf4s">SLF4S</a> is maintained by <a href="https://github.com/mattroberts297">mattroberts297</a>.</span>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">SLF4S maintained by <a href="https://github.com/mattroberts297">mattroberts297</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-              <script type="text/javascript">
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -155,6 +143,6 @@
             } catch(err) {}
           </script>
 
-
   </body>
 </html>
+
