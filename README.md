@@ -5,13 +5,13 @@ A Simple Logging Facade for Scala (SLF4S) built on top of SLF4J.
 
 # Features
 * Call by macro expansion (call by name in Scala 2.9);
-* A Logging mixin for conveniently obtaining a Logger; and
-* A LoggerFactory that is `ClassTag` aware.
-* Built for Scala 2.9, 2.10 and 2.11.
-* Tested on Java 6, 7 and 8.
+* A Logging mixin for conveniently obtaining a Logger;
+* A LoggerFactory that is `ClassTag` aware;
+* Built for Scala 2.9, 2.10 and 2.11;
+* Tested on Java 6, 7 and 8; and
 * Tracks [slf4j](http://www.slf4j.org/) releases.
 
-> The use of macros means that calls to `log.debug` are expanded into `if (log.isDebugEnabled) log.debug` at compile time.
+The use of macros means that calls to `log.debug` are expanded into `if (log.isDebugEnabled) log.debug` at compile time.
 
 # Installation
 ### Build.scala
@@ -22,7 +22,7 @@ libraryDependencies ++= Seq(
 )
 ```
 
-> You don't have to use [logback](http://logback.qos.ch/), any [slf4j](http://www.slf4j.org/) compatible framework will do.
+You don't have to use [logback](http://logback.qos.ch/), any [slf4j](http://www.slf4j.org/) compatible framework will do.
 
 # Usage
 ### The `Logging` Trait
@@ -86,5 +86,3 @@ The [`Logger`](http://slf4s.org/api/1.7.12/#org.slf4s.Logger) instance exposes a
 
 # Documentation
 For those who prefer not to use an IDE, I've made the [ScalaDoc](http://slf4s.org/api/1.7.12/) available online.
-
-> The library is very small, but there are a few methods not mentioned above.
