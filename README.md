@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mattroberts297/slf4s.png?branch=2.11)](https://travis-ci.org/mattroberts297/slf4s)
+[![Build Status](https://travis-ci.org/mattroberts297/slf4s.svg?branch=2.11)](https://travis-ci.org/mattroberts297/slf4s) [![Coverage Status](https://coveralls.io/repos/mattroberts297/slf4s/badge.svg?branch=2.11)](https://coveralls.io/r/mattroberts297/slf4s?branch=2.11)
 
 # About
 A Simple Logging Facade for Scala (SLF4S) built on top of SLF4J.
