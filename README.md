@@ -25,7 +25,7 @@ libraryDependencies ++= Seq(
 You don't have to use [logback](http://logback.qos.ch/), any [slf4j](http://www.slf4j.org/) compatible framework will do.
 
 # Usage
-### The `Logging` Trait
+### The Logging Trait
 The `Logging` trait provides a `protected val log` to your class, so it'll be available in the local scope, but won't pollute your interface. You can also reference it via a self type if you're using the cake pattern.
 ```scala
 package org.slf4s
@@ -42,7 +42,7 @@ class LoggingExampleSpec extends WordSpec with Logging {
 }
 ```
 
-### The `LoggerFactory` Object
+### The LoggerFactory Object
 The `LoggerFactory` gives you great flexibility and behaves much like the [slf4j](http://www.slf4j.org/) LoggerFactory. You probably only need to use this if you wish to log as a class other than the one in scope.
 ``` scala
 package org.slf4s
@@ -81,7 +81,7 @@ class StringInterpolatorExampleSpec extends WordSpec with Logging {
 }
 ```
 
-### The `underlying` Field
+### The Underlying Field
 The [`Logger`](http://slf4s.org/api/1.7.12/#org.slf4s.Logger) instance exposes an [`underlying`](http://slf4s.org/api/1.7.12/index.html#org.slf4s.Logger@underlying:org.slf4j.Logger) field that enables you to call slf4j methods directly. This is useful if you wish to avoid a macro expansion for some reason.
 
 # Documentation
