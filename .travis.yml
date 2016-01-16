@@ -1,13 +1,15 @@
 language: scala
 
 scala:
-  - 2.10.5
+  - 2.10.6
 
 jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk7
   - openjdk6
+
+sudo: false
 
 script: "sbt clean coverage test"
 
