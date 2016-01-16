@@ -1,0 +1,36 @@
+lazy val slf4s = (project in file(".")).settings(
+  organization := "org.slf4s",
+  name := "slf4s-api",
+  scalaVersion := "2.9.3",
+  crossScalaVersions := Seq("2.9.0", "2.9.1", "2.9.1-1", "2.9.2", "2.9.3"),
+  version := "1.7.13",
+  publishMavenStyle := true,
+  publishArtifact in Test := false,
+  pomIncludeRepository := { _ => false },
+  makePomConfiguration ~= { _.copy(configurations = Some(Seq(Compile, Runtime, Optional))) },
+  licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT")),
+  homepage := Some(url("http://slf4s.org/")),
+  scmInfo := Some(ScmInfo(url("https://github.com/mattroberts297/slf4s"), "https://github.com/mattroberts297/slf4s", None)),
+  pomExtra := (
+    <developers>
+      <developer>
+        <id>mattroberts297</id>
+        <name>Matt Roberts</name>
+        <email>mattroberts297@gmail.com</email>
+        <url>http://mattro.be/rts/</url>
+      </developer>
+    </developers>
+  ),
+  publishTo := {
+    val nexus = "https://oss.sonatype.org/"
+    if (isSnapshot.value)
+      Some("snapshots" at nexus + "content/repositories/snapshots")
+    else
+     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+  },
+  libraryDependencies ++= Seq(
+    "org.slf4j" % "slf4j-api" % version.value,
+    "org.scalatest" %% "scalatest" % "1.9.1" % "test",
+    "org.mockito" % "mockito-all" % "1.10.19" % "test"
+  )
+)
