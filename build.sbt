@@ -1,7 +1,7 @@
 lazy val slf4s = (project in file(".")).settings(
   organization := "org.slf4s",
   name := "slf4s-api",
-  scalaVersion := "2.11.6",
+  scalaVersion := "2.11.7",
   scalacOptions := Seq("-unchecked", "-deprecation", "-language:experimental.macros"),
   version := "1.7.12",
   publishMavenStyle := true,
