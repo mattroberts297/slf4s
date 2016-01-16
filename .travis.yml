@@ -9,6 +9,8 @@ jdk:
   - openjdk7
   - openjdk6
 
+sudo: false
+
 script: "sbt clean coverage test"
 
 after_success: "sbt coveralls"
