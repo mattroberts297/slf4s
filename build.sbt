@@ -3,7 +3,7 @@ lazy val slf4s = (project in file(".")).settings(
   name := "slf4s-api",
   scalaVersion := "2.11.7",
   scalacOptions := Seq("-unchecked", "-deprecation", "-language:experimental.macros"),
-  version := "1.7.12",
+  version := "1.7.13",
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
@@ -30,7 +30,7 @@ lazy val slf4s = (project in file(".")).settings(
   },
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
-    "org.slf4j" % "slf4j-api" % "1.7.13",
+    "org.slf4j" % "slf4j-api" % version.value,
     "org.scalatest" %% "scalatest" % "2.2.6" % "test",
     "org.mockito" % "mockito-all" % "1.10.19" % "test",
     "ch.qos.logback" % "logback-classic" % "1.1.3" % "test"
