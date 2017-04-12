@@ -15,3 +15,5 @@ project/target/
 .scala_dependencies
 .idea
 .idea_modules
+
+local.*

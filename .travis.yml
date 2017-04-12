@@ -1,16 +1,29 @@
 language: scala
 
 scala:
-  - 2.11.7
+  - 2.11.8
 
 jdk:
   - oraclejdk8
-  - oraclejdk7
-  - openjdk7
-  - openjdk6
 
 sudo: false
 
-script: "sbt clean coverage test"
+before_install:
+  - openssl aes-256-cbc -pass pass:$PGP_PASSPHRASE -in secret.asc.enc -out local.secret.asc -d
+  - openssl aes-256-cbc -pass pass:$PGP_PASSPHRASE -in public.asc.enc -out local.public.asc -d
+
+script: "sbt clean coverage test coverageReport"
 
 after_success: "sbt coveralls"
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: sbt publishSigned sonatypeRelease
+  on:
+    tags: true
+
+env:
+  global:
+    - secure: "Km7zfQR5Q4auR1tWeVNLrdTgRcwCxndszN81LIIlrYiL9t7dh3rL/CzmT+N433grNB6Y6yZgRHiLCF3mhRjZk0rjDxvhrQ+1r1PRJZOSlKXre2PQSTq+xAGkeUpKAJKtbRKQ5nCwyNyOlniHnbkck6XIKklESkMCntA4g/Fn4Dw="
+    - secure: "GGrBEUcd+kuchKaGAP7LLZ/ZshtNKRuNWwOZZBxNduSRq4Q3t2eTrRhyjgO+wmfsni5SLNA/tpqvdrjU0FQGtO/UrUd+OweFJ4JQ1niTJbYuewEWRGXpXybo7HV3jeWMQt7RkJIYqOUwCNHZnSMV0xJNEyIXrX9XSVwfyNZpDDA="
